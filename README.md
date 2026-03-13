@@ -1,15 +1,16 @@
 # JUCE Agent Toolkit
 
-Installable JUCE workflow skills for coding agents that support the `skills` ecosystem.
+Portable JUCE development skills for coding agents outside Claude Code.
 
-This repo is a standalone skills package. It is not the `juce-dev` Claude Code plugin, and it does not depend on that plugin. The point is to make the JUCE workflow available to agents like Codex, Cursor, OpenCode, and others through a standard installer flow.
-
-## Included Skills
-
-- `juce-project-starter`: JUCE-Plugin-Starter setup, `.env` configuration, build targets, placeholder replacement, and VST3 MIDI generator patterns.
-- `juce-visage-ui`: JUCE + Visage UI integration patterns for macOS and iOS, including embedding, focus, keyboard handling, popups, and troubleshooting.
+JUCE Agent Toolkit gives agents like Codex, Cursor, OpenCode, Gemini CLI, GitHub Copilot, and other supported hosts practical JUCE knowledge without requiring the `juce-dev` Claude Code plugin.
 
 ## Installing JUCE Agent Toolkit
+
+Install the whole toolkit:
+
+```bash
+npx skills add https://github.com/danielraffel/juce-agent-toolkit --skill '*'
+```
 
 Install one skill:
 
@@ -17,89 +18,74 @@ Install one skill:
 npx skills add https://github.com/danielraffel/juce-agent-toolkit --skill juce-project-starter
 ```
 
-Install both skills:
-
-```bash
-npx skills add https://github.com/danielraffel/juce-agent-toolkit --skill '*'
-```
-
-List available skills first if you want to browse:
-
-```bash
-npx skills add https://github.com/danielraffel/juce-agent-toolkit --list
-```
-
-The installer will guide you through:
-
-- which agents you want to install into
-- whether the skills should be installed for just one project or all your projects
-- whether to symlink or copy the installed skills
-
-If you get the error `npx: command not found`, install Node first:
+If you get the error `npx: command not found`, you need to [install Node first](https://nodejs.org/en/download). On macOS, the quickest route is:
 
 ```bash
 brew install node
 ```
 
-If that fails, you likely need to install Homebrew first.
+When using `npx`, the installer will guide you through which agents to install into and whether the skills should be installed for just the current project or for all your projects.
 
-Alternatively, you can clone this repository and install it however you want.
+If you prefer, you can also clone this repository and install it however you want.
 
-## Claude Code Note
+## What You Get
 
-If you already use the `juce-dev` Claude Code plugin, prefer the plugin for Claude Code and use this repo for your other agents.
+- `juce-project-starter`: JUCE-Plugin-Starter setup, `.env` configuration, build targets, placeholder replacement, and VST3 MIDI generator patterns.
+- `juce-visage-ui`: JUCE + Visage UI integration for macOS and iOS, including embedding, focus, keyboard handling, popups, and troubleshooting.
 
-The plugin already bundles overlapping JUCE workflow guidance, so installing the same guidance again into `claude-code` is unnecessary. A clean pattern is:
+## JUCE Agent Toolkit vs `juce-dev`
 
-- use `juce-dev` in Claude Code
-- use `juce-project-starter` and `juce-visage-ui` in Codex, Cursor, OpenCode, or other agents
+| Capability | JUCE Agent Toolkit | `juce-dev` Claude Code plugin |
+|---|---|---|
+| Understand JUCE-Plugin-Starter conventions | Yes | Yes |
+| Understand JUCE + Visage UI patterns | Yes | Yes |
+| Works in Codex, Cursor, OpenCode, Gemini CLI, and similar hosts | Yes | No |
+| Guided new-project creation flow | No | Yes |
+| Named build/test/sign/publish commands | No | Yes |
+| Automated setup for Visage, iOS, and auto-updates | No | Yes |
+| CI, logs, secrets, status, VM, website, and port workflows | No | Yes |
+| Best fit | Portable JUCE knowledge across agents | Full Claude Code automation |
 
-Plugin link:
+The easiest way to think about it is:
+
+- JUCE Agent Toolkit is the portable knowledge layer
+- `juce-dev` is the Claude Code automation layer on top
+
+If you want the full guided workflow in Claude Code, use the plugin:
 
 - https://www.generouscorp.com/generous-corp-marketplace/plugins/juce-dev/
 
-## Using The Skills
+If you already use `juce-dev`, do not install overlapping toolkit skills into Claude Code. Use this toolkit for your other agents instead.
+
+## Using JUCE Agent Toolkit
 
 These are skills, not slash commands.
 
-That means there is no `/juce-dev:create`-style command table here. Instead, your agent will either:
+In hosts that support explicit skill invocation, use the host's normal skill shortcut with one of these names:
 
-- detect the skill automatically from your request
-- let you invoke the skill by name, depending on the agent
+- `juce-project-starter`
+- `juce-visage-ui`
 
-The exact invocation style varies by agent, but these are the kinds of requests each skill is for:
-
-### `juce-project-starter`
-
-- "Help me set up a new JUCE-Plugin-Starter project."
-- "Explain which `.env` values I need for code signing and GitHub releases."
-- "How does JUCE-Plugin-Starter generate plugin codes and bundle IDs?"
-- "Help me configure a VST3 MIDI generator that still works as an AU MIDI effect in Logic."
-
-### `juce-visage-ui`
-
-- "Help me debug keyboard focus in my JUCE + Visage plugin UI."
-- "Show me the right way to embed Visage inside a JUCE editor."
-- "Help me build a popup or modal system in a Visage-based plugin."
-- "Why is my Visage-based plugin failing keyboard shortcuts in a DAW host?"
-
-## How It Works
-
-This repo uses the standard agent-skills layout:
+You can also trigger the skills using natural language. For example:
 
 ```text
-skills/
-  juce-project-starter/
-    SKILL.md
-    references/
-    agents/openai.yaml
-  juce-visage-ui/
-    SKILL.md
-    references/
-    agents/openai.yaml
+Use the juce-project-starter skill to explain which .env values I need for code signing.
+Use the juce-project-starter skill to help configure a VST3 MIDI generator for Ableton and Logic.
+Use the juce-visage-ui skill to debug keyboard focus in my JUCE + Visage plugin UI.
+Use the juce-visage-ui skill to show the right way to embed Visage inside a JUCE editor.
 ```
 
-The `skills` CLI installs these skill folders into the target agent's skill directory by symlink or copy. After that, the target agent can discover and trigger them like any other installed skill.
+## Planned v2
+
+This release focuses on the portable foundation.
+
+The next release should expand parity with `juce-dev` by adding more portable skills and shared scripts for:
+
+- build and release workflows
+- setup flows for Visage, iOS, and auto-updates
+- more of the plugin's day-to-day operational surface
+
+As that work lands, the matrix above should be updated to reflect the new capability split.
 
 ## Related Projects
 
