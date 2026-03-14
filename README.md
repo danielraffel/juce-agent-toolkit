@@ -35,7 +35,11 @@ If you prefer, you can also clone this repository and install it however you wan
 - `juce-visage-ui`: JUCE + Visage UI integration and debugging on macOS and iOS
 - `juce-build-release`: build, test, sign, package, and publish workflows based on starter scripts
 - `juce-setup-visage`: portable setup flow for adding Visage to an existing starter project
+- `juce-setup-ios`: portable setup flow for adding or repairing an iOS app target
+- `juce-auto-updates`: Sparkle and WinSparkle setup plus updater doctor guidance
 - `shared/scripts/inspect_juce_project.py`: reusable project inspector used by the workflow skills
+- `shared/scripts/auto_update_doctor.py`: repeatable updater validation pass
+- `shared/scripts/setup_sparkle.sh` and `shared/scripts/setup_winsparkle.sh`: portable updater download helpers
 
 In plain English:
 
@@ -52,15 +56,15 @@ Matrix key:
 - `Partial`: meaningful skill or script support, but not full plugin automation
 - `No`: plugin-only today
 
-| Capability | JUCE Agent Toolkit v2.0 | `juce-dev` Claude Code plugin |
+| Capability | JUCE Agent Toolkit v3.0 | `juce-dev` Claude Code plugin |
 |---|---|---|
 | Understand JUCE-Plugin-Starter conventions | Yes | Yes |
 | Understand JUCE + Visage UI patterns | Yes | Yes |
 | Build, test, sign, package, and publish from starter scripts | Partial | Yes |
 | Add Visage to an existing starter project | Partial | Yes |
+| Add an iOS app target | Partial | Yes |
+| Add auto-update support | Partial | Yes |
 | Create a new project from the starter | No | Yes |
-| Add an iOS app target | No | Yes |
-| Add auto-update support | No | Yes |
 | Inspect project status and enabled features | Partial | Yes |
 | Trigger CI, view logs, and manage release secrets | No | Yes |
 | Create or refresh a GitHub Pages download site | No | Yes |
@@ -93,12 +97,16 @@ In hosts that support explicit skill invocation, use the host's normal skill sho
 - `juce-visage-ui`
 - `juce-build-release`
 - `juce-setup-visage`
+- `juce-setup-ios`
+- `juce-auto-updates`
 
 You can also trigger the skills using natural language. For example:
 
 ```text
 Use the juce-build-release skill to help me run a signed VST3 build from this starter project.
 Use the juce-setup-visage skill to add Visage to this existing JUCE-Plugin-Starter repo.
+Use the juce-setup-ios skill to add an iPad-compatible app target to this starter-based plugin repo.
+Use the juce-auto-updates skill to set up Sparkle and run an updater doctor pass.
 Use the juce-project-starter skill to explain which .env values I need for code signing.
 Use the juce-visage-ui skill to debug keyboard focus in my JUCE + Visage plugin UI.
 ```
