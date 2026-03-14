@@ -43,7 +43,10 @@ If you prefer, you can also clone this repository and install it however you wan
 - `juce-cross-platform-port`: lightweight port audit and planning support
 - `shared/scripts/inspect_juce_project.py`: reusable project inspector used by the workflow skills
 - `shared/scripts/auto_update_doctor.py`: repeatable updater validation pass
+- `shared/scripts/build_release.py`: portable wrapper for starter build and publish flows
+- `shared/scripts/create_project.py`: portable starter-based project creation wrapper
 - `shared/scripts/setup_sparkle.sh` and `shared/scripts/setup_winsparkle.sh`: portable updater download helpers
+- `shared/scripts/setup_updates.py`: portable updater setup wrapper
 - `shared/scripts/find_starter_repo.py`: locates or clones JUCE-Plugin-Starter
 - `shared/scripts/vm_registry.py`: portable VM registry for non-Claude hosts
 - `shared/scripts/port_audit.py`: lightweight cross-platform audit helper
@@ -66,15 +69,15 @@ Matrix key:
 
 This matrix is the release-by-release parity tracker for the toolkit.
 
-| Capability | JUCE Agent Toolkit v4.0 | `juce-dev` Claude Code plugin |
+| Capability | JUCE Agent Toolkit v5.0 | `juce-dev` Claude Code plugin |
 |---|---|---|
 | Understand JUCE-Plugin-Starter conventions | Yes | Yes |
 | Understand JUCE + Visage UI patterns | Yes | Yes |
-| Build, test, sign, package, and publish from starter scripts | Partial | Yes |
+| Build, test, sign, package, and publish from starter scripts | Yes | Yes |
 | Add Visage to an existing starter project | Partial | Yes |
 | Add an iOS app target | Partial | Yes |
 | Add auto-update support | Partial | Yes |
-| Create a new project from the starter | Partial | Yes |
+| Create a new project from the starter | Yes | Yes |
 | Inspect project status and enabled features | Yes | Yes |
 | Trigger CI, view logs, and manage release secrets | Partial | Yes |
 | Create or refresh a GitHub Pages download site | Partial | Yes |

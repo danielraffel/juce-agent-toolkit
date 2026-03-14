@@ -11,6 +11,8 @@ Use this skill for the portable workflow behind `/juce-dev:setup-updates`.
 
 1. Inspect the project first:
    - `python3 ../../shared/scripts/inspect_juce_project.py`
+2. Use the portable wrapper when you want the toolkit to run the setup flow:
+   - `python3 ../../shared/scripts/setup_updates.py --doctor --generate-appcasts`
 2. Run the updater doctor before making changes:
    - `python3 ../../shared/scripts/auto_update_doctor.py`
 3. Confirm whether the goal is:
@@ -38,6 +40,14 @@ Typical flow:
    - feed URLs for the platforms you ship
 4. Verify the source files and CMake wiring are present.
 5. Run the doctor again and report what is still missing.
+
+## Toolkit Wrapper
+
+`../../shared/scripts/setup_updates.py` can:
+- download Sparkle or WinSparkle
+- set the core updater env keys
+- generate appcast placeholder files
+- run the doctor immediately after setup
 
 ## Doctor Script
 

@@ -11,6 +11,8 @@ Use this skill for the portable workflow behind `/juce-dev:create`.
 
 1. Locate the starter repo:
    - `python3 ../../shared/scripts/find_starter_repo.py`
+2. Use the portable wrapper if you want the toolkit to do the starter copy and placeholder replacement:
+   - `python3 ../../shared/scripts/create_project.py "My Plugin"`
 2. If it is not present, clone it:
    - `python3 ../../shared/scripts/find_starter_repo.py --clone ~/Code/JUCE-Plugin-Starter`
 3. Confirm the user wants:
@@ -22,6 +24,7 @@ Use this skill for the portable workflow behind `/juce-dev:create`.
 ## Preferred Workflow
 
 1. Use the starter repo's own `scripts/init_plugin_project.sh`.
+2. Or use `../../shared/scripts/create_project.py` when you want a cross-host wrapper around the same starter conventions.
 2. Reuse configured developer values from the starter `.env` when they are already real and not placeholders.
 3. Let the starter script perform placeholder replacement and project initialization.
 4. After creation:
@@ -36,7 +39,7 @@ This is not as guided as the Claude plugin:
 - no built-in AskUserQuestion flow
 - no plugin-managed GitHub bootstrap
 
-But it does give the agent a portable path to the real starter creation script instead of leaving project creation entirely manual.
+But it does give the agent a portable path to either the real starter creation script or the toolkit wrapper instead of leaving project creation entirely manual.
 
 ## Guardrails
 

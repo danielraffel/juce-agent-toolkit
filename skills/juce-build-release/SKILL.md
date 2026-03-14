@@ -11,6 +11,8 @@ Use this skill for the portable workflow behind `/juce-dev:build`.
 
 1. Inspect the project first:
    - `python3 ../../shared/scripts/inspect_juce_project.py`
+2. If you want a direct portable wrapper, use:
+   - `python3 ../../shared/scripts/build_release.py`
 2. Confirm the repo is a JUCE-Plugin-Starter project.
 3. Prefer the project's own scripts over ad-hoc `cmake` or `xcodebuild` commands:
    - macOS/Linux: `scripts/build.sh`
@@ -64,6 +66,14 @@ If the user wants CI signing parity, prefer the project's helper scripts:
 - `scripts/update_download_links.sh`
 
 Use them instead of hand-rolling `gh secret set` or README link edits.
+
+## Toolkit Wrapper
+
+`../../shared/scripts/build_release.py` wraps the starter build scripts and adds:
+- portable project-root targeting
+- target and action parsing
+- basic CMake regeneration detection
+- a dry-run mode so the agent can show the exact command before running it
 
 ## Guardrails
 
