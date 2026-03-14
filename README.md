@@ -33,13 +33,21 @@ If you prefer, you can also clone this repository and install it however you wan
 
 - `juce-project-starter`: starter template structure, `.env` setup, formats, placeholder replacement, and MIDI generator patterns
 - `juce-visage-ui`: JUCE + Visage UI integration and debugging on macOS and iOS
+- `juce-project-create`: portable project creation flow using JUCE-Plugin-Starter
 - `juce-build-release`: build, test, sign, package, and publish workflows based on starter scripts
 - `juce-setup-visage`: portable setup flow for adding Visage to an existing starter project
 - `juce-setup-ios`: portable setup flow for adding or repairing an iOS app target
 - `juce-auto-updates`: Sparkle and WinSparkle setup plus updater doctor guidance
+- `juce-ci-release`: CI, release-notes, and signing-secret workflow guidance
+- `juce-project-ops`: status, website, and VM operations
+- `juce-cross-platform-port`: lightweight port audit and planning support
 - `shared/scripts/inspect_juce_project.py`: reusable project inspector used by the workflow skills
 - `shared/scripts/auto_update_doctor.py`: repeatable updater validation pass
 - `shared/scripts/setup_sparkle.sh` and `shared/scripts/setup_winsparkle.sh`: portable updater download helpers
+- `shared/scripts/find_starter_repo.py`: locates or clones JUCE-Plugin-Starter
+- `shared/scripts/vm_registry.py`: portable VM registry for non-Claude hosts
+- `shared/scripts/port_audit.py`: lightweight cross-platform audit helper
+- `shared/scripts/bump_version.py` and `shared/scripts/generate_release_notes.py`: portable release helpers
 
 In plain English:
 
@@ -56,7 +64,9 @@ Matrix key:
 - `Partial`: meaningful skill or script support, but not full plugin automation
 - `No`: plugin-only today
 
-| Capability | JUCE Agent Toolkit v3.0 | `juce-dev` Claude Code plugin |
+This matrix is the release-by-release parity tracker for the toolkit.
+
+| Capability | JUCE Agent Toolkit v4.0 | `juce-dev` Claude Code plugin |
 |---|---|---|
 | Understand JUCE-Plugin-Starter conventions | Yes | Yes |
 | Understand JUCE + Visage UI patterns | Yes | Yes |
@@ -64,12 +74,12 @@ Matrix key:
 | Add Visage to an existing starter project | Partial | Yes |
 | Add an iOS app target | Partial | Yes |
 | Add auto-update support | Partial | Yes |
-| Create a new project from the starter | No | Yes |
-| Inspect project status and enabled features | Partial | Yes |
-| Trigger CI, view logs, and manage release secrets | No | Yes |
-| Create or refresh a GitHub Pages download site | No | Yes |
-| Manage cross-platform VMs | No | Yes |
-| Audit and port a project across macOS, Windows, and Linux | No | Yes |
+| Create a new project from the starter | Partial | Yes |
+| Inspect project status and enabled features | Yes | Yes |
+| Trigger CI, view logs, and manage release secrets | Partial | Yes |
+| Create or refresh a GitHub Pages download site | Partial | Yes |
+| Manage cross-platform VMs | Partial | Yes |
+| Audit and port a project across macOS, Windows, and Linux | Partial | Yes |
 | Works in Codex, Cursor, OpenCode, Gemini CLI, and similar hosts | Yes | No |
 
 The easiest way to think about it is:
@@ -95,18 +105,26 @@ In hosts that support explicit skill invocation, use the host's normal skill sho
 
 - `juce-project-starter`
 - `juce-visage-ui`
+- `juce-project-create`
 - `juce-build-release`
 - `juce-setup-visage`
 - `juce-setup-ios`
 - `juce-auto-updates`
+- `juce-ci-release`
+- `juce-project-ops`
+- `juce-cross-platform-port`
 
 You can also trigger the skills using natural language. For example:
 
 ```text
+Use the juce-project-create skill to bootstrap a new project from JUCE-Plugin-Starter.
 Use the juce-build-release skill to help me run a signed VST3 build from this starter project.
 Use the juce-setup-visage skill to add Visage to this existing JUCE-Plugin-Starter repo.
 Use the juce-setup-ios skill to add an iPad-compatible app target to this starter-based plugin repo.
 Use the juce-auto-updates skill to set up Sparkle and run an updater doctor pass.
+Use the juce-ci-release skill to check GitHub Actions status and prepare release notes.
+Use the juce-project-ops skill to inspect this repo and show any configured cross-platform VMs.
+Use the juce-cross-platform-port skill to audit this project for a Windows port.
 Use the juce-project-starter skill to explain which .env values I need for code signing.
 Use the juce-visage-ui skill to debug keyboard focus in my JUCE + Visage plugin UI.
 ```
